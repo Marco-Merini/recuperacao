@@ -45,10 +45,102 @@ class _PatientFormState extends State<PatientForm> {
     int patientScore = 0;
 
     if (age > ageThreshold) patientScore++;
-    if (leukocytes > leukocytesThreshold) patientScore++;
-    if (glucose > glucoseThreshold) patientScore++;
-    if (ast > astThreshold) patientScore++;
-    if (ldh > ldhThreshold) patientScore++;
+    if (leukocytes > leukocytesThreshold) {
+      patientScore++;
+      if (patientScore >= 3) {
+        // A pancreatite é grave
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Alerta'),
+              content: Text('Pancreatite é grave devido aos Leucócitos.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+    }
+    if (glucose > glucoseThreshold) {
+      patientScore++;
+      if (patientScore >= 3) {
+        // A pancreatite é grave
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Alerta'),
+              content: Text('Pancreatite é grave devido à Glicemia.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+    }
+    if (ast > astThreshold) {
+      patientScore++;
+      if (patientScore >= 3) {
+        // A pancreatite é grave
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Alerta'),
+              content: Text('Pancreatite é grave devido à AST/TGO.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+    }
+    if (ldh > ldhThreshold) {
+      patientScore++;
+      if (patientScore >= 3) {
+        // A pancreatite é grave
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Alerta'),
+              content: Text('Pancreatite é grave devido à LDH.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Fechar'),
+                ),
+              ],
+            );
+          },
+        );
+        return;
+      }
+    }
 
     score = patientScore.toDouble();
 
