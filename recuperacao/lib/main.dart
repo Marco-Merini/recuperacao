@@ -41,14 +41,12 @@ class _PatientFormState extends State<PatientForm> {
     int ast = int.tryParse(astController.text) ?? 0;
     int ldh = int.tryParse(ldhController.text) ?? 0;
 
-    // Lógica para calcular o escore de mortalidade aqui
     int patientScore = 0;
 
     if (age > ageThreshold) patientScore++;
     if (leukocytes > leukocytesThreshold) {
       patientScore++;
       if (patientScore >= 3) {
-        // A pancreatite é grave
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -72,7 +70,6 @@ class _PatientFormState extends State<PatientForm> {
     if (glucose > glucoseThreshold) {
       patientScore++;
       if (patientScore >= 3) {
-        // A pancreatite é grave
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -96,7 +93,6 @@ class _PatientFormState extends State<PatientForm> {
     if (ast > astThreshold) {
       patientScore++;
       if (patientScore >= 3) {
-        // A pancreatite é grave
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -120,7 +116,6 @@ class _PatientFormState extends State<PatientForm> {
     if (ldh > ldhThreshold) {
       patientScore++;
       if (patientScore >= 3) {
-        // A pancreatite é grave
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -144,7 +139,6 @@ class _PatientFormState extends State<PatientForm> {
 
     score = patientScore.toDouble();
 
-    // Lógica para determinar a categoria de mortalidade aqui
     if (score >= 7) {
       mortalityCategory = "100%";
     } else if (score >= 5) {
